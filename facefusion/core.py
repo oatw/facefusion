@@ -118,21 +118,21 @@ def pre_check() -> bool:
 
 def common_pre_check() -> bool:
 	# Disable file hash check
-	return True
-	# common_modules =\
-	# [
-	# 	content_analyser,
-	# 	face_classifier,
-	# 	face_detector,
-	# 	face_landmarker,
-	# 	face_masker,
-	# 	face_recognizer,
-	# 	voice_extractor
-	# ]
+	common_modules =\
+	[
+		content_analyser,
+		face_classifier,
+		face_detector,
+		face_landmarker,
+		face_masker,
+		face_recognizer,
+		voice_extractor
+	]
 
-	# content_analyser_content = inspect.getsource(content_analyser).encode()
-	# content_analyser_hash = hash_helper.create_hash(content_analyser_content)
+	content_analyser_content = inspect.getsource(content_analyser).encode()
+	content_analyser_hash = hash_helper.create_hash(content_analyser_content)
 
+	return all(module.pre_check() for module in common_modules)
 	# return all(module.pre_check() for module in common_modules) and content_analyser_hash == '803b5ec7'
 
 
